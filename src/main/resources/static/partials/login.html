@@ -1,6 +1,5 @@
-<h1>Login</h1>
-
-<form>
+<form ng-model="login">
+    <h1>Login</h1>
     <md-input-container>
         <label>Username</label>
         <input type="text" ng-model="login.username" required>
@@ -8,13 +7,13 @@
 
     <md-input-container>
         <label>Password</label>
-        <input type="text" ng-model="login.password" required>
+        <input type="password" ng-model="login.password" required>
     </md-input-container>
 
     <p style="color:red" ng-show="invalidCreds">Invalid credentials</p>
 
     <div class="action-buttons">
-        <md-button ng-click="login()">
+        <md-button ng-click="login()" ng-disabled="!login.username || !login.password">
             Login
         </md-button>
     </div>

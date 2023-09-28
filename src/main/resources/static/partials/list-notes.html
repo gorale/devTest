@@ -1,29 +1,11 @@
-<h4>Available notes</h4>
+<h4 ng-show = "notes.length > 0">Available notes</h4>
+<h4 ng-show = "notes.length == 0">As long as there are no notes</h4>
 
-<ul class="notes-list">
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
-    </li>
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
-    </li>
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
-    </li>
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
-    </li>
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
-    </li>
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
+<ul class="notes-list" ng-show = "notes.length > 0" >
+    <li ng-repeat="note in notes | orderBy:'name'">
+        <p class="note-summary">{{note.name}}</p>
+        <p class="note-timedate"><i>{{ note.createdTs | date : 'yyyy/MM/dd' }}</i></p>
+        <button class="note-delete-button" ng-click="deleteNote(note.id)">Delete</button>
     </li>
 </ul>
 <md-button style="float:right" ng-click="newNoteView()">
