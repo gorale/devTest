@@ -18,7 +18,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
         "com.thevirtugroup.postitnote.service",
         "com.thevirtugroup.postitnote.security",
         "com.thevirtugroup.postitnote.repository",
-        "com.thevirtugroup.postitnote.rest"
+        "com.thevirtugroup.postitnote.rest",
+        "com.thevirtugroup.postitnote.converter"
 })
 public class Application extends WebMvcConfigurerAdapter {
     public static void main(String[] args) throws Exception {

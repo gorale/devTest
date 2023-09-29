@@ -1,5 +1,6 @@
 package com.thevirtugroup.postitnote.repository;
 
+import com.thevirtugroup.postitnote.exception.EntityNotFoundException;
 import com.thevirtugroup.postitnote.model.Note;
 import org.springframework.stereotype.Repository;
 
@@ -11,20 +12,21 @@ import java.util.List;
 @Repository
 public class NoteRepository {
 
-    private List<Note> notes = new ArrayList<>();
+    private final List<Note> notes = new ArrayList<>();
 
     public List<Note> findAll() {
         return notes;
     }
 
     public Note findById(int id) {
-        return notes.stream().filter(note -> note.getId() == id).findFirst().orElse(null);
+        return notes.stream().filter(note -> note.getId() == id).findFirst()
+                .orElseThrow(() -> new EntityNotFoundException(String.format("not found note by id: %d", id)));
     }
 
 
     public Note save(Note noteDetail) {
         Note note = new Note();
-        note.setId(notes.size());
+        note.setId(notes.size() + 1);
         note.setName(noteDetail.getName());
         note.setText(noteDetail.getText());
         note.setCreatedTs(LocalDateTime.now().toString());
